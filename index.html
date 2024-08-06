@@ -25,7 +25,7 @@
 </head>
 <body>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
-    <script src="Build/GC-Build.loader.js"></script>
+    <script src="Build/DJ-Raw.loader.js"></script>
     <script>
         function resizeCanvas() {
             const canvas = document.querySelector("#unity-canvas");
@@ -34,12 +34,12 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-            dataUrl: "Build/GC-Build.data",
-            frameworkUrl: "Build/GC-Build.framework.js",
-            codeUrl: "Build/GC-Build.wasm",
+            dataUrl: "Build/DJ-Raw.data",
+            frameworkUrl: "Build/DJ-Raw.framework.js",
+            codeUrl: "Build/DJ-Raw.wasm",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
-            productName: "GC",
+            productName: "DJ",
             productVersion: "1.0.0",
             matchWebGLToCanvasSize: false,
             devicePixelRatio: window.devicePixelRatio
