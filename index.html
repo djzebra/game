@@ -27,28 +27,50 @@
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="Build/DJ-Raw.loader.js"></script>
     <script>
+        async function fetchGzippedFile(url) {
+            const response = await fetch(url);
+            if (!response.ok) {
+                throw new Error(`Failed to fetch ${url}`);
+            }
+            const arrayBuffer = await response.arrayBuffer();
+            const uint8Array = new Uint8Array(arrayBuffer);
+            return uint8Array;
+        }
+
         function resizeCanvas() {
             const canvas = document.querySelector("#unity-canvas");
             canvas.width = window.innerWidth;
             canvas.height = window.innerHeight;
         }
 
-        createUnityInstance(document.querySelector("#unity-canvas"), {
-            dataUrl: "Build/DJ-Raw.data.gz",
-            frameworkUrl: "Build/DJ-Raw.framework.js.gz",
-            codeUrl: "Build/DJ-Raw.wasm.gz",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "77",
-            productName: "DJ",
-            productVersion: "1.0.0",
-            matchWebGLToCanvasSize: false,
-            devicePixelRatio: window.devicePixelRatio
-        }).then(() => {
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-        }).catch((error) => {
-            console.error('Error initializing Unity WebGL:', error);
-        });
+        (async () => {
+            try {
+                const [data, framework, wasm] = await Promise.all([
+                    fetchGzippedFile('Build/DJ-Raw.data.gz'),
+                    fetchGzippedFile('Build/DJ-Raw.framework.js.gz'),
+                    fetchGzippedFile('Build/DJ-Raw.wasm.gz')
+                ]);
+
+                createUnityInstance(document.querySelector("#unity-canvas"), {
+                    dataUrl: URL.createObjectURL(new Blob([data])),
+                    frameworkUrl: URL.createObjectURL(new Blob([framework], { type: 'application/javascript' })),
+                    codeUrl: URL.createObjectURL(new Blob([wasm], { type: 'application/wasm' })),
+                    streamingAssetsUrl: "StreamingAssets",
+                    companyName: "77",
+                    productName: "DJ",
+                    productVersion: "1.0.0",
+                    matchWebGLToCanvasSize: false,
+                    devicePixelRatio: window.devicePixelRatio
+                }).then(() => {
+                    resizeCanvas();
+                    window.addEventListener('resize', resizeCanvas);
+                }).catch((error) => {
+                    console.error('Error initializing Unity WebGL:', error);
+                });
+            } catch (error) {
+                console.error('Failed to load gzipped files:', error);
+            }
+        })();
     </script>
 </body>
 </html>
