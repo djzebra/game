@@ -54,7 +54,7 @@
                 ]);
 
                 createUnityInstance(document.querySelector("#unity-canvas"), {
-                    dataUrl: URL.createObjectURL(new Blob([data])),
+                    dataUrl: URL.createObjectURL(new Blob([data], { type: 'application/octet-stream' })),
                     frameworkUrl: URL.createObjectURL(new Blob([framework], { type: 'application/javascript' })),
                     codeUrl: URL.createObjectURL(new Blob([wasm], { type: 'application/wasm' })),
                     streamingAssetsUrl: "StreamingAssets",
