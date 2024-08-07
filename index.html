@@ -22,6 +22,7 @@
         }
     </style>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
 </head>
 <body>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
@@ -34,7 +35,8 @@
             }
             const arrayBuffer = await response.arrayBuffer();
             const uint8Array = new Uint8Array(arrayBuffer);
-            return uint8Array;
+            const decompressed = pako.ungzip(uint8Array);
+            return decompressed;
         }
 
         function resizeCanvas() {
