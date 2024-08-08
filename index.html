@@ -41,20 +41,25 @@
 <body>
     <div id="loading-text">Loading</div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
     <script>
-	console.log('Hello')
-        function updateLoadingText() {
-            const loadingText = document.getElementById("loading-text");
-            const dots = ['.', '..', '...'];
-            let index = 0;
+    function saveFileToLocalStorage(url, key) {
+      fetch(url)
+        .then(response => response.arrayBuffer())
+        .then(data => {
+          const base64 = btoa(String.fromCharCode(...new Uint8Array(data)));
+          localStorage.setItem(key, base64);
+          console.log('File saved to localStorage.');
+        })
+        .catch(error => {
+          console.error('Error:', error);
+        });
+    }
 
-            setInterval(() => {
-                loadingText.textContent = `Loading${dots[index]}`;
-                index = (index + 1) % dots.length;
-            }, 500);
-        }
-        updateLoadingText();
+    const fileUrl = 'https://github.com/djzebra/game/raw/master/Build/DJ-Raw.data.gz';
+    const storageKey = 'data.gz';
+
+    // Сохраняем файл
+    saveFileToLocalStorage(fileUrl, storageKey);
     </script>
 </body>
 </html>
