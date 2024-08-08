@@ -39,15 +39,15 @@
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
 </head>
 <body>
-    <div id="loading-text">Loading</div>
+<div id="loading-text">Loading</div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script>
     function saveFileToLocalStorage(url, key) {
-      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
-      fetch(proxyUrl + url)
-        .then(response => response.arrayBuffer())
+      const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
+      fetch(proxyUrl)
+        .then(response => response.json())
         .then(data => {
-          const base64 = btoa(String.fromCharCode(...new Uint8Array(data)));
+          const base64 = btoa(String.fromCharCode(...new Uint8Array(data.contents)));
           localStorage.setItem(key, base64);
           console.log('File saved to localStorage.');
         })
