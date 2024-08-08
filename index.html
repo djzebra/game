@@ -43,7 +43,8 @@
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script>
     function saveFileToLocalStorage(url, key) {
-      fetch(url)
+      const proxyUrl = 'https://cors-anywhere.herokuapp.com/';
+      fetch(proxyUrl + url)
         .then(response => response.arrayBuffer())
         .then(data => {
           const base64 = btoa(String.fromCharCode(...new Uint8Array(data)));
