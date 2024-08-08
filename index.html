@@ -41,14 +41,9 @@
 <body>
     <div id="loading-text">Loading</div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
-    <script src="Build/DJ-Raw.loader.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pako/2.0.4/pako.min.js"></script>
     <script>
-        function resizeCanvas() {
-            const canvas = document.querySelector("#unity-canvas");
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-
+	console.log('Hello')
         function updateLoadingText() {
             const loadingText = document.getElementById("loading-text");
             const dots = ['.', '..', '...'];
@@ -59,26 +54,6 @@
                 index = (index + 1) % dots.length;
             }, 500);
         }
-
-        createUnityInstance(document.querySelector("#unity-canvas"), {
-            dataUrl: "Build/DJ-Raw.data",
-            frameworkUrl: "Build/DJ-Raw.framework.js",
-            codeUrl: "Build/DJ-Raw.wasm",
-            streamingAssetsUrl: "StreamingAssets",
-            companyName: "77",
-            productName: "DJ",
-            productVersion: "1.0.0",
-            matchWebGLToCanvasSize: false,
-            devicePixelRatio: window.devicePixelRatio
-        }).then(() => {
-            document.getElementById("loading-text").style.display = "none";
-            resizeCanvas();
-            window.addEventListener('resize', resizeCanvas);
-        }).catch((error) => {
-            console.error('Error initializing Unity WebGL:', error);
-        });
-
-        // Start the loading text animation
         updateLoadingText();
     </script>
 </body>
