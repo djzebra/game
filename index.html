@@ -42,25 +42,51 @@
 <div id="loading-text">Loading</div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script>
-    function saveFileToLocalStorage(url, key) {
-      const proxyUrl = 'https://api.allorigins.win/get?url=' + encodeURIComponent(url);
-      fetch(proxyUrl)
-        .then(response => response.json())
-        .then(data => {
-          const base64 = btoa(String.fromCharCode(...new Uint8Array(data.contents)));
-          localStorage.setItem(key, base64);
-          console.log('File saved to localStorage.');
-        })
-        .catch(error => {
-          console.error('Error:', error);
-        });
+        async function fetchAndStoreFile(url, fileName) {
+        const response = await fetch(url);
+        const blob = await response.blob();
+
+        const dbRequest = indexedDB.open('gameFilesDB', 1);
+
+        dbRequest.onupgradeneeded = event => {
+            const db = event.target.result;
+            db.createObjectStore('files', { keyPath: 'name' });
+        };
+
+        dbRequest.onsuccess = event => {
+            const db = event.target.result;
+            const transaction = db.transaction('files', 'readwrite');
+            const store = transaction.objectStore('files');
+            store.put({ name: fileName, file: blob });
+        };
+
+        dbRequest.onerror = event => {
+            console.error('IndexedDB error:', event);
+        };
     }
 
-    const fileUrl = 'https://github.com/djzebra/game/raw/master/Build/DJ-Raw.data.gz';
-    const storageKey = 'data.gz';
+    function listIndexedDBFiles() {
+        const dbRequest = indexedDB.open('gameFilesDB', 1);
 
-    // Сохраняем файл
-    saveFileToLocalStorage(fileUrl, storageKey);
+        dbRequest.onsuccess = event => {
+            const db = event.target.result;
+            const transaction = db.transaction('files', 'readonly');
+            const store = transaction.objectStore('files');
+            const getAllRequest = store.getAll();
+
+            getAllRequest.onsuccess = () => {
+                console.log('Files in IndexedDB:');
+                getAllRequest.result.forEach(file => {
+                    console.log(`File name: ${file.name}`);
+                });
+            };
+        };
+    }
+
+    fetchAndStoreFile('https://drive.google.com/uc?export=download&id=YOUR_FILE_ID', 'example1.gz');
+    fetchAndStoreFile('https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_2', 'example2.gz');
+
+    setTimeout(listIndexedDBFiles, 2000); 
     </script>
 </body>
 </html>
