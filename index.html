@@ -20,21 +20,6 @@
             height: 100%;
             background: #FFFFFF;
         }
-        #loading-text {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            height: 100vh;
-            font-size: 24px;
-            color: #333;
-            background: #FFFFFF;
-            position: absolute;
-            width: 100%;
-            top: 0;
-            left: 0;
-            z-index: 1000;
-            text-align: center;
-        }
     </style>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
 </head>
@@ -83,8 +68,7 @@
         };
     }
 
-    fetchAndStoreFile('https://drive.google.com/uc?export=download&id=YOUR_FILE_ID', 'example1.gz');
-    fetchAndStoreFile('https://drive.google.com/uc?export=download&id=YOUR_FILE_ID_2', 'example2.gz');
+    fetchAndStoreFile('https://drive.usercontent.google.com/u/0/uc?id=1iSHiFG4iKgvg8LDw64LDUNjdkumC2Obn&export=download', 'example1.gz');
 
     setTimeout(listIndexedDBFiles, 2000); 
     </script>
