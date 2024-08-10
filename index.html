@@ -5,11 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
     <title>Unity WebGL Player</title>
     <style>
+        @font-face {
+            font-family: 'MyCustomFont';
+            src: url('font.otf') format('truetype');
+        }
         body {
             margin: 0;
             padding: 0;
             overflow: hidden;
-            background: #FFFFFF;
         }
         #unity-canvas {
             display: block;
@@ -18,7 +21,22 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: #FFFFFF;
+        }
+        #loading-text {
+            font-family: MyCustomFont, sans-serif;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            font-size: 30px;
+            color: #FFFFFF;
+            background: #1f1629;
+            position: absolute;
+            width: 100%;
+            top: 0;
+            left: 0;
+            z-index: 1000;
+            text-align: center;
         }
     </style>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
@@ -78,6 +96,17 @@
             });
         }
 
+        function updateLoadingText() {
+            const loadingText = document.getElementById("loading-text");
+            const dots = ['.', '..', '...'];
+            let index = 0;
+
+            setInterval(() => {
+                loadingText.textContent = `Loading${dots[index]}`;
+                index = (index + 1) % dots.length;
+            }, 500);
+        }
+
         getFilesToUnity().then(() => {
             const loaderScript = document.createElement('script');
             loaderScript.src = unityFiles['DJ-Raw.loader.js'];
@@ -115,6 +144,8 @@
                 console.error('Failed to load DJ-Raw.loader.js');
             };
         });
+
+        updateLoadingText()
     </script>
 </body>
 </html>
