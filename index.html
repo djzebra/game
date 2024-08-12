@@ -40,12 +40,17 @@
         }
     </style>
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <base target="_self">
 </head>
 <body>
     <div id="loading-text">Loading</div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="pako.js"></script>
     <script>
+        let initData = window.Telegram.WebApp.initData;
+        console.log(initData)
+
         const unityFiles = {};
 
         async function fetchAndStoreFile(url, name) {
