@@ -87,9 +87,9 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/215eeba29d561518750b1faddba02df2.data.unityweb",
-        frameworkUrl: "Build/6b12d36ed921b60d578384b9f2c4ac0f.js.unityweb",
-        codeUrl: "Build/0a513a813fdbcc51bbb835cbbf9ca98a.wasm.unityweb",
+            dataUrl: "Build/0c21648743ce8e6d3cfda9c38cb4fefb.data.unityweb",
+            frameworkUrl: "Build/6b12d36ed921b60d578384b9f2c4ac0f.js.unityweb",
+            codeUrl: "Build/0a513a813fdbcc51bbb835cbbf9ca98a.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
@@ -101,7 +101,7 @@
                 document.getElementById("loading-container").style.display = "none";
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
-            }, 2000);
+            }, 0);
         }).catch((error) => {
             console.error('Error initializing Unity WebGL:', error);
         });
