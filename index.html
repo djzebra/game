@@ -41,13 +41,13 @@
             height: 14vw;
             border: 1.4vw solid rgba(255, 255, 255, 0.3);
             border-top: 1.4vw solid #ffffff;
-            border-radius: 50%;
+            border-radius:50%;
             animation: spin 1s linear infinite;
         }
         #loading-token {
             position: absolute;
-            width: 12vw;
-            height: 12vw;
+            width: 14vw;
+            height: 14vw;
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
@@ -58,8 +58,8 @@
         }
 
         @keyframes scalePulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(0.8); }
-            50% { transform: translate(-50%, -50%) scale(1); }
+            0%, 100% { transform: translate(-50%, -50%) scale(0.85); }
+            50% { transform: translate(-50%, -50%) scale(0.9); }
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
@@ -87,9 +87,9 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/2648cd6aa5ff55aa343307ea08422d06.data.unityweb",
-        frameworkUrl: "Build/5fd7eb930c72d0a8dcdddbb734ab307b.js.unityweb",
-        codeUrl: "Build/726ca4ac0ba484ecf78dddf317e93286.wasm.unityweb",
+        dataUrl: "Build/e4c0e99955bf69c5767b649d6996da58.data.unityweb",
+        frameworkUrl: "Build/4d47c8dbe33dda041308b046cc7405d4.js.unityweb",
+        codeUrl: "Build/f26c0e6a4ffe63db8d7375b35b276c2d.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
