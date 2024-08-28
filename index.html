@@ -101,7 +101,7 @@
                 document.getElementById("loading-container").style.display = "none";
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
-            }, 0);
+            }, 2000);
         }).catch((error) => {
             console.error('Error initializing Unity WebGL:', error);
         });
