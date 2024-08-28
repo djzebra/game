@@ -37,20 +37,20 @@
         }
         #loading-spinner {
             position: relative;
-            width: 5vw;
-            height: 5vw;
-            border: 0.6vw solid rgba(255, 255, 255, 0.3);
-            border-top: 0.6vw solid #ffffff;
+            width: 14vw;
+            height: 14vw;
+            border: 1.4vw solid rgba(255, 255, 255, 0.3);
+            border-top: 1.4vw solid #ffffff;
             border-radius: 50%;
             animation: spin 1s linear infinite;
         }
         #loading-token {
             position: absolute;
-            width: 4vw;
-            height: 4vw;
+            width: 12vw;
+            height: 12vw;
             top: 50%;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translate(-49%, -49%);
             background: url('token.png') no-repeat center center;
             background-size: contain;
             border-radius: 50%;
@@ -58,8 +58,8 @@
         }
 
         @keyframes scalePulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(0.8); }
-            50% { transform: translate(-50%, -50%) scale(1); }
+            0%, 100% { transform: translate(-49%, -49%) scale(0.8); }
+            50% { transform: translate(-49%, -49%) scale(1); }
         }
         @keyframes spin {
             0% { transform: rotate(0deg); }
