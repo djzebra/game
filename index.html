@@ -91,13 +91,15 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/3d08fa4ba0313bac0b95fa3c93842f7d.data.unityweb",
-        frameworkUrl: "Build/0048637ba7e84fd4718c7067bfe9969b.js.unityweb",
-        codeUrl: "Build/e5190e565ef48cc2b02829ba65b9ad48.wasm.unityweb",
+            dataUrl: "Build/3d08fa4ba0313bac0b95fa3c93842f7d.data.unityweb",
+            frameworkUrl: "Build/0048637ba7e84fd4718c7067bfe9969b.js.unityweb",
+            codeUrl: "Build/e5190e565ef48cc2b02829ba65b9ad48.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
             productVersion: "1.0.0",
+            matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
+            devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
         }).then(() => {
             setTimeout(() => {
                 document.getElementById("loading-container").style.display = "none";
