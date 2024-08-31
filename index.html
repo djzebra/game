@@ -9,7 +9,7 @@
             font-family: 'MyCustomFont';
             src: url('font.otf') format('truetype');
         }
- 	body {
+        body {
             margin: 0;
             padding: 0;
             overflow: hidden;
@@ -79,10 +79,6 @@
     <script src="Build/1c545332af8d46a03de13097c17364f5.js"></script>
     <script>
         Telegram.WebApp.setHeaderColor("#1f1629");
-	Telegram.WebApp.expand();
-	Telegram.WebApp.onEvent('viewportChanged', function () {
-    		Telegram.WebApp.expand();
-	});
 
         function resizeCanvas() {
             const canvas = document.querySelector("#unity-canvas");
@@ -91,15 +87,15 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-            dataUrl: "Build/3d08fa4ba0313bac0b95fa3c93842f7d.data.unityweb",
-            frameworkUrl: "Build/0048637ba7e84fd4718c7067bfe9969b.js.unityweb",
-            codeUrl: "Build/e5190e565ef48cc2b02829ba65b9ad48.wasm.unityweb",
+        dataUrl: "Build/2b12c9be4e09a214cf93710e40d39754.data.unityweb",
+        frameworkUrl: "Build/0048637ba7e84fd4718c7067bfe9969b.js.unityweb",
+        codeUrl: "Build/2eb1709cc4c4eccdaf76c26f7de92108.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
             productVersion: "1.0.0",
-            matchWebGLToCanvasSize: false, // Uncomment this to separately control WebGL canvas render size and DOM element size.
-            devicePixelRatio: 1, // Uncomment this to override low DPI rendering on high DPI displays.
+            matchWebGLToCanvasSize: false,
+            devicePixelRatio: window.devicePixelRatio
         }).then(() => {
             setTimeout(() => {
                 document.getElementById("loading-container").style.display = "none";
