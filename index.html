@@ -14,21 +14,23 @@
             padding: 0;
             overflow: hidden;
             background: #1f1629;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
         }
         #unity-canvas {
             display: block;
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            width: 100vw;
+            height: 100vh;
         }
         #loading-container {
             display: flex;
             align-items: center;
             justify-content: center;
             height: 100vh;
-            width: 100%;
+            width: 100vw;
             position: absolute;
             top: 0;
             left: 0;
@@ -41,7 +43,7 @@
             height: 14vw;
             border: 1.4vw solid rgba(255, 255, 255, 0.3);
             border-top: 1.4vw solid #ffffff;
-            border-radius:50%;
+            border-radius: 50%;
             animation: spin 1s linear infinite;
         }
         #loading-token {
@@ -56,7 +58,6 @@
             border-radius: 50%;
             animation: scalePulse 2s ease-in-out infinite;
         }
-
         @keyframes scalePulse {
             0%, 100% { transform: translate(-50%, -50%) scale(0.85); }
             50% { transform: translate(-50%, -50%) scale(0.9); }
@@ -66,7 +67,7 @@
             100% { transform: rotate(360deg); }
         }
     </style>
-    <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1.0, user-scalable=no, shrink-to-fit=yes">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no, shrink-to-fit=no">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <base target="_self">
 </head>
@@ -87,14 +88,14 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/2b12c9be4e09a214cf93710e40d39754.data.unityweb",
-        frameworkUrl: "Build/0048637ba7e84fd4718c7067bfe9969b.js.unityweb",
-        codeUrl: "Build/2eb1709cc4c4eccdaf76c26f7de92108.wasm.unityweb",
+        dataUrl: "Build/dbc902e5888562a91ebeb822e1a04559.data.unityweb",
+        frameworkUrl: "Build/7a5b5c6c81f575efa5694c334ae063f7.js.unityweb",
+        codeUrl: "Build/0800acf848c8cf5e594f24f75845b0fd.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
             productVersion: "1.0.0",
-            matchWebGLToCanvasSize: false,
+            matchWebGLToCanvasSize: true,
             devicePixelRatio: window.devicePixelRatio
         }).then(() => {
             setTimeout(() => {
