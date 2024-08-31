@@ -91,6 +91,7 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
+
         dataUrl: "Build/3db05daf0e197b53d5fbf810e467227b.data.unityweb",
         frameworkUrl: "Build/2953bf3e54432764c1de39c5b6746e68.js.unityweb",
         codeUrl: "Build/1fb0239dbc65c8fe3f34bc67e9e5c7f3.wasm.unityweb",
@@ -98,7 +99,8 @@
             companyName: "77",
             productName: "djzebra",
             productVersion: "1.0.0",
- 	    matchWebGLToCanvasSize: false, 
+	    matchWebGLToCanvasSize: true,
+            devicePixelRatio: window.devicePixelRatio || 1
         }).then(() => {
             setTimeout(() => {
                 document.getElementById("loading-container").style.display = "none";
