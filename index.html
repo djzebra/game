@@ -83,18 +83,7 @@
     <script src="Build/DJ-Raw.loader.js"></script>
     <script>
 	function GetWebAppData() {
-            const tgApp = window.Telegram.WebApp;
-            const urlParams = new URLSearchParams(tgApp.initData);
-            const hash = urlParams.get("hash");
-            urlParams.delete("hash");
-            urlParams.sort();
-            let dataCheckString = "";
-            for(const [key, value] of urlParams.entries()){
-                dataCheckString += key + '=' + value + '\n';
-            }
-            dataCheckString = dataCheckString.slice(0, -1);
-            let dataUrl = [dataCheckString, hash];
-            window.unityInstance.SendMessage('WebHelper', 'ReceiveDataFromJS', JSON.stringify(dataUrl));
+
         }
     </script>
     <script>
@@ -126,6 +115,19 @@
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
             }, 0);
+
+	    const tgApp = window.Telegram.WebApp;
+            const urlParams = new URLSearchParams(tgApp.initData);
+            const hash = urlParams.get("hash");
+            urlParams.delete("hash");
+            urlParams.sort();
+            let dataCheckString = "";
+            for(const [key, value] of urlParams.entries()){
+                dataCheckString += key + '=' + value + '\n';
+            }
+            dataCheckString = dataCheckString.slice(0, -1);
+            let dataUrl = [dataCheckString, hash];
+            unityInstance.SendMessage('WebHelper', 'ReceiveDataFromJS', JSON.stringify(dataUrl));
         }).catch((error) => {
             console.error('Error initializing Unity WebGL:', error);
         });
