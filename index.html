@@ -82,7 +82,7 @@
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="Build/1c545332af8d46a03de13097c17364f5.js"></script>
     <script>
-        function GetWebAppData() {
+	function GetWebAppData() {
             const tgApp = window.Telegram.WebApp;
             const urlParams = new URLSearchParams(tgApp.initData);
             const hash = urlParams.get("hash");
@@ -94,7 +94,8 @@
             }
             dataCheckString = dataCheckString.slice(0, -1);
             let dataUrl = [dataCheckString, hash];
-            return JSON.stringify(dataUrl);
+
+            SendMessage('WebHelper', 'ReceiveDataFromJS', JSON.stringify(dataUrl));
         }
     </script>
     <script>
@@ -110,9 +111,9 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/bb61745130b7cbafdf7bd89649d41508.data.unityweb",
-        frameworkUrl: "Build/bc1f818982734c9dcd6da1aa904435ae.js.unityweb",
-        codeUrl: "Build/f1209f5b3b2b9b87657eedaa11e3b39f.wasm.unityweb",
+        dataUrl: "Build/DJ-Raw.data.unityweb",
+        frameworkUrl: "Build/DJ-Raw.framework.js.unityweb",
+        codeUrl: "Build/DJ-Raw.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
