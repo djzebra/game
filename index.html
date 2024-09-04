@@ -82,6 +82,22 @@
     <canvas id="unity-canvas" tabindex="-1"></canvas>
     <script src="Build/1c545332af8d46a03de13097c17364f5.js"></script>
     <script>
+        function GetWebAppData() {
+            const tgApp = window.Telegram.WebApp;
+            const urlParams = new URLSearchParams(tgApp.initData);
+            const hash = urlParams.get("hash");
+            urlParams.delete("hash");
+            urlParams.sort();
+            let dataCheckString = "";
+            for(const [key, value] of urlParams.entries()){
+                dataCheckString += key + '=' + value + '\n';
+            }
+            dataCheckString = dataCheckString.slice(0, -1);
+            let dataUrl = [dataCheckString, hash];
+            return JSON.stringify(dataUrl);
+        }
+    </script>
+    <script>
         Telegram.WebApp.setHeaderColor("#1f1629");
 
         function resizeCanvas() {
@@ -94,9 +110,9 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/717c5af82fd074b2ed22b4f5275a64b9.data.unityweb",
-        frameworkUrl: "Build/4d98cdce73aa4e5bf22b309b115a515b.js.unityweb",
-        codeUrl: "Build/edff2ddec2568c7c57664add32599379.wasm.unityweb",
+        dataUrl: "Build/bb61745130b7cbafdf7bd89649d41508.data.unityweb",
+        frameworkUrl: "Build/bc1f818982734c9dcd6da1aa904435ae.js.unityweb",
+        codeUrl: "Build/f1209f5b3b2b9b87657eedaa11e3b39f.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
