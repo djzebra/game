@@ -80,7 +80,7 @@
         <div id="loading-token"></div>
     </div>
     <canvas id="unity-canvas" tabindex="-1"></canvas>
-    <script src="Build/1c545332af8d46a03de13097c17364f5.js"></script>
+    <script src="Build/DJ-Raw.loader.js"></script>
     <script>
 	function GetWebAppData() {
             console.log('GetWebAppData')
@@ -112,9 +112,9 @@
         }
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
-        dataUrl: "Build/DJ-Raw.data.unityweb",
-        frameworkUrl: "Build/DJ-Raw.framework.js.unityweb",
-        codeUrl: "Build/DJ-Raw.wasm.unityweb",
+            dataUrl: "Build/DJ-Raw.data.unityweb",
+            frameworkUrl: "Build/DJ-Raw.framework.js.unityweb",
+            codeUrl: "Build/DJ-Raw.wasm.unityweb",
             streamingAssetsUrl: "StreamingAssets",
             companyName: "77",
             productName: "djzebra",
