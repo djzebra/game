@@ -94,7 +94,7 @@
             }
             dataCheckString = dataCheckString.slice(0, -1);
             let dataUrl = [dataCheckString, hash];
-            SendMessage('WebHelper', 'ReceiveDataFromJS', JSON.stringify(dataUrl));
+            window.unityInstance.SendMessage('WebHelper', 'ReceiveDataFromJS', JSON.stringify(dataUrl));
         }
     </script>
     <script>
@@ -119,7 +119,8 @@
             productVersion: "1.0.0",
             matchWebGLToCanvasSize: false,
             devicePixelRatio: window.devicePixelRatio
-        }).then(() => {
+        }).then((unityInstance) => {
+	    window.unityInstance = unityInstance;
             setTimeout(() => {
                 document.getElementById("loading-container").style.display = "none";
                 resizeCanvas();
