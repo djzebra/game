@@ -83,6 +83,7 @@
     <script src="Build/1c545332af8d46a03de13097c17364f5.js"></script>
     <script>
 	function GetWebAppData() {
+            console.log('GetWebAppData')
             const tgApp = window.Telegram.WebApp;
             const urlParams = new URLSearchParams(tgApp.initData);
             const hash = urlParams.get("hash");
@@ -94,7 +95,7 @@
             }
             dataCheckString = dataCheckString.slice(0, -1);
             let dataUrl = [dataCheckString, hash];
-
+	    console.log(JSON.stringify(dataUrl))
             SendMessage('WebHelper', 'ReceiveDataFromJS', JSON.stringify(dataUrl));
         }
     </script>
