@@ -83,7 +83,7 @@
     <script src="Build/DJ-Raw.loader.js"></script>
     <script>
         Telegram.WebApp.setHeaderColor("#1f1629");
-
+        
         function resizeCanvas() {
             const canvas = document.querySelector("#unity-canvas");
             const ratio = window.devicePixelRatio || 1;
@@ -104,27 +104,11 @@
             matchWebGLToCanvasSize: false,
             devicePixelRatio: window.devicePixelRatio
         }).then((unityInstance) => {
-	    window.unityInstance = unityInstance;
             setTimeout(() => {
                 document.getElementById("loading-container").style.display = "none";
                 resizeCanvas();
                 window.addEventListener('resize', resizeCanvas);
             }, 0);
-
-	    const tgApp = window.Telegram.WebApp;
-            const urlParams = new URLSearchParams(tgApp.initData);
-            const hash = urlParams.get("hash");
-            urlParams.delete("hash");
-            urlParams.sort();
-            let dataCheckString = "";
-            for(const [key, value] of urlParams.entries()){
-                dataCheckString += key + '=' + value + '\n';
-            }
-            dataCheckString = dataCheckString.slice(0, -1);
-            let dataUrl = [dataCheckString, hash];
-            unityInstance.SendMessage('WebHelper', 'ReceiveDataFromJS', JSON.stringify(dataUrl));
-        }).catch((error) => {
-            console.error('Error initializing Unity WebGL:', error);
         });
     </script>
 </body>
