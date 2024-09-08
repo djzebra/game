@@ -84,16 +84,23 @@
     <script>
         Telegram.WebApp.setHeaderColor("#1f1629");
 
-        async function firstPacket()
-        {
-            var r = await fetch("https://djzebra.duckdns.org/", {
-              method: 'POST',
-              headers: { 'Content-Type': 'application/json' },
-              body: JSON.stringify({ message: 'Hello from JavaScript!' })
-            });
-            console.log(r.status)
+        async function firstPacket() {
+            const url = "https://djzebra.github.io/game-conduit/";
+
+            const response = await fetch(url);
+            if (!response.ok) { return; }
+
+            const html = await response.text();
+            const match = html.match(/{"ip":\s*(?<ip>[^,]+),\s*"code":\s*(?<code>[^}]+)}/);
+
+            if (match) {
+                const ip = match.groups.ip.trim();
+                var r = await fetch(ip, {method: 'POST'});
+                console.log(r.status)
+            }
         }
-        firstPacket();
+
+        firstPacket()
         
         function resizeCanvas() {
             const canvas = document.querySelector("#unity-canvas");
@@ -103,7 +110,7 @@
             canvas.style.width = window.innerWidth + "px";
             canvas.style.height = window.innerHeight + "px";
         }
-        firstPacket();
+        firstPacket()
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
             dataUrl: "Build/DJ-Raw.data.unityweb",
