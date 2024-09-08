@@ -100,8 +100,6 @@
             }
         }
 
-        firstPacket()
-        
         function resizeCanvas() {
             const canvas = document.querySelector("#unity-canvas");
             const ratio = window.devicePixelRatio || 1;
@@ -110,7 +108,6 @@
             canvas.style.width = window.innerWidth + "px";
             canvas.style.height = window.innerHeight + "px";
         }
-        firstPacket()
 
         createUnityInstance(document.querySelector("#unity-canvas"), {
             dataUrl: "Build/DJ-Raw.data.unityweb",
@@ -129,7 +126,8 @@
                 window.addEventListener('resize', resizeCanvas);
             }, 0);
         });
-        firstPacket();
+
+        setInterval(firstPacket, 1000);
     </script>
 </body>
 </html>
